@@ -1,0 +1,844 @@
+diff -Naur a/ThemeManager/smali/com/android/thememanager/controller/local/ThemeJSONDataParser.smali b/ThemeManager/smali/com/android/thememanager/controller/local/ThemeJSONDataParser.smali
+--- a/ThemeManager/smali/com/android/thememanager/controller/local/ThemeJSONDataParser.smali	2014-09-25 14:43:15.082647183 +0800
++++ b/ThemeManager/smali/com/android/thememanager/controller/local/ThemeJSONDataParser.smali	2014-09-25 15:11:49.026570768 +0800
+@@ -16,17 +16,17 @@
+     .parameter "context"
+ 
+     .prologue
+-    .line 24
++    .line 28
+     invoke-direct {p0, p1}, Lmiui/resourcebrowser/controller/local/LocalJSONDataParser;-><init>(Lmiui/resourcebrowser/ResourceContext;)V
+ 
+-    .line 25
++    .line 29
+     invoke-virtual {p1}, Lmiui/resourcebrowser/ResourceContext;->getResourceCode()Ljava/lang/String;
+ 
+     move-result-object v0
+ 
+     iput-object v0, p0, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->mResourceCode:Ljava/lang/String;
+ 
+-    .line 26
++    .line 30
+     return-void
+ .end method
+ 
+@@ -35,24 +35,24 @@
+     .parameter "resource"
+ 
+     .prologue
+-    .line 65
++    .line 75
+     if-nez p1, :cond_1
+ 
+-    .line 101
++    .line 111
+     :cond_0
+     return-void
+ 
+-    .line 69
++    .line 79
+     :cond_1
+     invoke-virtual {p1}, Lmiui/resourcebrowser/model/Resource;->getBuildInThumbnails()Ljava/util/List;
+ 
+     move-result-object v5
+ 
+-    .line 70
++    .line 80
+     .local v5, list:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+     if-eqz v5, :cond_2
+ 
+-    .line 71
++    .line 81
+     invoke-interface {v5}, Ljava/util/List;->size()I
+ 
+     move-result v11
+@@ -63,22 +63,22 @@
+     :goto_0
+     if-lez v2, :cond_2
+ 
+-    .line 72
++    .line 82
+     invoke-interface {v5, v2}, Ljava/util/List;->remove(I)Ljava/lang/Object;
+ 
+-    .line 71
++    .line 81
+     add-int/lit8 v2, v2, -0x1
+ 
+     goto :goto_0
+ 
+-    .line 76
++    .line 86
+     .end local v2           #i:I
+     :cond_2
+     invoke-virtual {p1}, Lmiui/resourcebrowser/model/Resource;->getBuildInPreviews()Ljava/util/List;
+ 
+     move-result-object v5
+ 
+-    .line 77
++    .line 87
+     if-eqz v5, :cond_0
+ 
+     const-string v11, "theme"
+@@ -91,7 +91,7 @@
+ 
+     if-eqz v11, :cond_0
+ 
+-    .line 78
++    .line 88
+     invoke-virtual {p1}, Lmiui/resourcebrowser/model/Resource;->getSubResources()Ljava/util/List;
+ 
+     move-result-object v11
+@@ -114,19 +114,19 @@
+ 
+     check-cast v8, Lmiui/resourcebrowser/model/RelatedResource;
+ 
+-    .line 79
++    .line 89
+     .local v8, sub:Lmiui/resourcebrowser/model/RelatedResource;
+     invoke-virtual {v8}, Lmiui/resourcebrowser/model/RelatedResource;->getResourceCode()Ljava/lang/String;
+ 
+     move-result-object v9
+ 
+-    .line 80
++    .line 90
+     .local v9, subResourceCode:Ljava/lang/String;
+     invoke-static {v9}, Lcom/android/thememanager/util/ConstantsHelper;->getMappingCode(Ljava/lang/String;)Ljava/lang/String;
+ 
+     move-result-object v6
+ 
+-    .line 81
++    .line 91
+     .local v6, mappingCode:Ljava/lang/String;
+     const-string v11, "thirdapp"
+ 
+@@ -154,12 +154,12 @@
+ 
+     if-nez v11, :cond_3
+ 
+-    .line 83
++    .line 93
+     invoke-static {v9}, Lcom/android/thememanager/util/ConstantsHelper;->getComponentPreviewPrefix(Ljava/lang/String;)Ljava/lang/String;
+ 
+     move-result-object v7
+ 
+-    .line 84
++    .line 94
+     .local v7, prefix:Ljava/lang/String;
+     invoke-interface {v5}, Ljava/util/List;->size()I
+ 
+@@ -171,14 +171,14 @@
+     :goto_1
+     if-ltz v2, :cond_3
+ 
+-    .line 85
++    .line 95
+     invoke-interface {v5, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+ 
+     move-result-object v10
+ 
+     check-cast v10, Ljava/lang/String;
+ 
+-    .line 86
++    .line 96
+     .local v10, tmp:Ljava/lang/String;
+     if-eqz v10, :cond_4
+ 
+@@ -188,17 +188,17 @@
+ 
+     if-ltz v11, :cond_5
+ 
+-    .line 87
++    .line 97
+     :cond_4
+     invoke-interface {v5, v2}, Ljava/util/List;->remove(I)Ljava/lang/Object;
+ 
+-    .line 84
++    .line 94
+     :cond_5
+     add-int/lit8 v2, v2, -0x1
+ 
+     goto :goto_1
+ 
+-    .line 92
++    .line 102
+     .end local v2           #i:I
+     .end local v6           #mappingCode:Ljava/lang/String;
+     .end local v7           #prefix:Ljava/lang/String;
+@@ -220,7 +220,7 @@
+ 
+     aget-object v1, v0, v3
+ 
+-    .line 93
++    .line 103
+     .local v1, hidePrefix:Ljava/lang/String;
+     invoke-interface {v5}, Ljava/util/List;->size()I
+ 
+@@ -232,14 +232,14 @@
+     :goto_3
+     if-ltz v2, :cond_9
+ 
+-    .line 94
++    .line 104
+     invoke-interface {v5, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
+ 
+     move-result-object v10
+ 
+     check-cast v10, Ljava/lang/String;
+ 
+-    .line 95
++    .line 105
+     .restart local v10       #tmp:Ljava/lang/String;
+     if-eqz v10, :cond_7
+ 
+@@ -257,17 +257,17 @@
+ 
+     if-le v11, v12, :cond_8
+ 
+-    .line 96
++    .line 106
+     :cond_7
+     invoke-interface {v5, v2}, Ljava/util/List;->remove(I)Ljava/lang/Object;
+ 
+-    .line 93
++    .line 103
+     :cond_8
+     add-int/lit8 v2, v2, -0x1
+ 
+     goto :goto_3
+ 
+-    .line 92
++    .line 102
+     .end local v10           #tmp:Ljava/lang/String;
+     :cond_9
+     add-int/lit8 v3, v3, 0x1
+@@ -275,6 +275,241 @@
+     goto :goto_2
+ .end method
+ 
++.method private static getDeviceSuffix()Ljava/lang/String;
++    .locals 3
++
++    .prologue
++    .line 138
++    sget-object v0, Lmiui/os/Build;->MODEL:Ljava/lang/String;
++
++    .line 139
++    .local v0, device:Ljava/lang/String;
++    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_0
++
++    const-string v1, "unknown"
++
++    invoke-static {v0, v1}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_1
++
++    .line 140
++    :cond_0
++    sget-object v0, Lmiui/os/Build;->PRODUCT:Ljava/lang/String;
++
++    .line 142
++    :cond_1
++    const/16 v1, 0x20
++
++    const/16 v2, 0x5f
++
++    invoke-virtual {v0, v1, v2}, Ljava/lang/String;->replace(CC)Ljava/lang/String;
++
++    move-result-object v1
++
++    return-object v1
++.end method
++
++.method private static replaceCustThemePreviews(Lmiui/resourcebrowser/model/Resource;Z)V
++    .locals 9
++    .parameter "r"
++    .parameter "forThumbnails"
++
++    .prologue
++    .line 117
++    if-eqz p1, :cond_1
++
++    invoke-virtual {p0}, Lmiui/resourcebrowser/model/Resource;->getBuildInThumbnails()Ljava/util/List;
++
++    move-result-object v6
++
++    .line 118
++    .local v6, tmp:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
++    :goto_0
++    if-eqz v6, :cond_3
++
++    .line 119
++    const/4 v1, 0x0
++
++    .local v1, i:I
++    :goto_1
++    invoke-interface {v6}, Ljava/util/List;->size()I
++
++    move-result v7
++
++    if-ge v1, v7, :cond_3
++
++    .line 120
++    new-instance v4, Ljava/io/File;
++
++    invoke-interface {v6, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
++
++    move-result-object v7
++
++    check-cast v7, Ljava/lang/String;
++
++    invoke-direct {v4, v7}, Ljava/io/File;-><init>(Ljava/lang/String;)V
++
++    .line 121
++    .local v4, originFile:Ljava/io/File;
++    invoke-virtual {v4}, Ljava/io/File;->getName()Ljava/lang/String;
++
++    move-result-object v5
++
++    .line 122
++    .local v5, originName:Ljava/lang/String;
++    const-string v3, ""
++
++    .line 123
++    .local v3, newName:Ljava/lang/String;
++    const-string v7, "."
++
++    invoke-virtual {v5, v7}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I
++
++    move-result v0
++
++    .line 124
++    .local v0, dotIndex:I
++    if-lez v0, :cond_2
++
++    .line 125
++    new-instance v7, Ljava/lang/StringBuilder;
++
++    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
++
++    const/4 v8, 0x0
++
++    invoke-virtual {v5, v8, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
++
++    move-result-object v8
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    const-string v8, "_"
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    invoke-static {}, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->getDeviceSuffix()Ljava/lang/String;
++
++    move-result-object v8
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    invoke-virtual {v5, v0}, Ljava/lang/String;->substring(I)Ljava/lang/String;
++
++    move-result-object v8
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v3
++
++    .line 129
++    :goto_2
++    new-instance v2, Ljava/io/File;
++
++    invoke-virtual {v4}, Ljava/io/File;->getParent()Ljava/lang/String;
++
++    move-result-object v7
++
++    invoke-direct {v2, v7, v3}, Ljava/io/File;-><init>(Ljava/lang/String;Ljava/lang/String;)V
++
++    .line 130
++    .local v2, newFile:Ljava/io/File;
++    invoke-virtual {v2}, Ljava/io/File;->exists()Z
++
++    move-result v7
++
++    if-eqz v7, :cond_0
++
++    .line 131
++    invoke-virtual {v2}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
++
++    move-result-object v7
++
++    invoke-interface {v6, v1, v7}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
++
++    .line 119
++    :cond_0
++    add-int/lit8 v1, v1, 0x1
++
++    goto :goto_1
++
++    .line 117
++    .end local v0           #dotIndex:I
++    .end local v1           #i:I
++    .end local v2           #newFile:Ljava/io/File;
++    .end local v3           #newName:Ljava/lang/String;
++    .end local v4           #originFile:Ljava/io/File;
++    .end local v5           #originName:Ljava/lang/String;
++    .end local v6           #tmp:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
++    :cond_1
++    invoke-virtual {p0}, Lmiui/resourcebrowser/model/Resource;->getBuildInPreviews()Ljava/util/List;
++
++    move-result-object v6
++
++    goto :goto_0
++
++    .line 127
++    .restart local v0       #dotIndex:I
++    .restart local v1       #i:I
++    .restart local v3       #newName:Ljava/lang/String;
++    .restart local v4       #originFile:Ljava/io/File;
++    .restart local v5       #originName:Ljava/lang/String;
++    .restart local v6       #tmp:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
++    :cond_2
++    new-instance v7, Ljava/lang/StringBuilder;
++
++    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
++
++    invoke-virtual {v7, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    const-string v8, "_"
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    invoke-static {}, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->getDeviceSuffix()Ljava/lang/String;
++
++    move-result-object v8
++
++    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object v7
++
++    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object v3
++
++    goto :goto_2
++
++    .line 135
++    .end local v0           #dotIndex:I
++    .end local v1           #i:I
++    .end local v3           #newName:Ljava/lang/String;
++    .end local v4           #originFile:Ljava/io/File;
++    .end local v5           #originName:Ljava/lang/String;
++    :cond_3
++    return-void
++.end method
++
+ 
+ # virtual methods
+ .method public loadResource(Ljava/io/File;)Lmiui/resourcebrowser/model/Resource;
+@@ -289,12 +524,12 @@
+     .prologue
+     const/4 v6, 0x0
+ 
+-    .line 30
++    .line 34
+     invoke-super {p0, p1}, Lmiui/resourcebrowser/controller/local/LocalJSONDataParser;->loadResource(Ljava/io/File;)Lmiui/resourcebrowser/model/Resource;
+ 
+     move-result-object v3
+ 
+-    .line 32
++    .line 36
+     .local v3, resource:Lmiui/resourcebrowser/model/Resource;
+     invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
+ 
+@@ -310,7 +545,7 @@
+ 
+     move-result v1
+ 
+-    .line 34
++    .line 38
+     .local v1, isDefaultTheme:Z
+     const-string v7, "theme"
+ 
+@@ -320,17 +555,17 @@
+ 
+     move-result v7
+ 
+-    if-eqz v7, :cond_3
++    if-eqz v7, :cond_4
+ 
+-    .line 35
+-    if-nez v1, :cond_4
++    .line 39
++    if-nez v1, :cond_5
+ 
+-    .line 36
++    .line 40
+     new-instance v2, Ljava/util/HashSet;
+ 
+     invoke-direct {v2}, Ljava/util/HashSet;-><init>()V
+ 
+-    .line 37
++    .line 41
+     .local v2, modulesCodeSet:Ljava/util/Set;,"Ljava/util/Set<Ljava/lang/String;>;"
+     invoke-virtual {v3}, Lmiui/resourcebrowser/model/Resource;->getSubResources()Ljava/util/List;
+ 
+@@ -355,7 +590,7 @@
+ 
+     check-cast v5, Lmiui/resourcebrowser/model/RelatedResource;
+ 
+-    .line 38
++    .line 42
+     .local v5, sub:Lmiui/resourcebrowser/model/RelatedResource;
+     invoke-virtual {v5}, Lmiui/resourcebrowser/model/RelatedResource;->getResourceCode()Ljava/lang/String;
+ 
+@@ -365,7 +600,7 @@
+ 
+     move-result-object v4
+ 
+-    .line 39
++    .line 43
+     .local v4, resourceCode:Ljava/lang/String;
+     invoke-virtual {v3}, Lmiui/resourcebrowser/model/Resource;->getPlatform()I
+ 
+@@ -377,7 +612,7 @@
+ 
+     if-eqz v7, :cond_0
+ 
+-    .line 42
++    .line 46
+     const-string v7, "thirdapp"
+ 
+     invoke-virtual {v7, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -406,7 +641,7 @@
+ 
+     if-nez v7, :cond_0
+ 
+-    .line 45
++    .line 49
+     const-string v7, "miwallpaper"
+ 
+     invoke-virtual {v7, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -415,20 +650,20 @@
+ 
+     if-eqz v7, :cond_1
+ 
+-    .line 47
++    .line 51
+     const-string v7, "wallpaper"
+ 
+     invoke-interface {v2, v7}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+ 
+     goto :goto_0
+ 
+-    .line 49
++    .line 53
+     :cond_1
+     invoke-interface {v2, v4}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+ 
+     goto :goto_0
+ 
+-    .line 52
++    .line 56
+     .end local v4           #resourceCode:Ljava/lang/String;
+     .end local v5           #sub:Lmiui/resourcebrowser/model/RelatedResource;
+     :cond_2
+@@ -438,20 +673,21 @@
+ 
+     const/4 v8, 0x2
+ 
+-    if-ge v7, v8, :cond_4
++    if-ge v7, v8, :cond_5
+ 
+     move-object v3, v6
+ 
+-    .line 61
++    .line 71
+     .end local v0           #i$:Ljava/util/Iterator;
+     .end local v2           #modulesCodeSet:Ljava/util/Set;,"Ljava/util/Set<Ljava/lang/String;>;"
+     .end local v3           #resource:Lmiui/resourcebrowser/model/Resource;
++    :cond_3
+     :goto_1
+     return-object v3
+ 
+-    .line 56
++    .line 60
+     .restart local v3       #resource:Lmiui/resourcebrowser/model/Resource;
+-    :cond_3
++    :cond_4
+     invoke-virtual {v3}, Lmiui/resourcebrowser/model/Resource;->getPlatform()I
+ 
+     move-result v7
+@@ -462,16 +698,41 @@
+ 
+     move-result v7
+ 
+-    if-nez v7, :cond_4
++    if-nez v7, :cond_5
+ 
+     move-object v3, v6
+ 
+-    .line 57
++    .line 61
+     goto :goto_1
+ 
+-    .line 60
+-    :cond_4
++    .line 64
++    :cond_5
+     invoke-direct {p0, v3}, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->filterLocalPreviews(Lmiui/resourcebrowser/model/Resource;)V
+ 
++    .line 66
++    sget-boolean v6, Lmiui/os/Build;->IS_CM_CUSTOMIZATION:Z
++
++    if-eqz v6, :cond_3
++
++    invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
++
++    move-result-object v6
++
++    invoke-static {v6}, Lmiui/resourcebrowser/util/ResourceHelper;->isDataResource(Ljava/lang/String;)Z
++
++    move-result v6
++
++    if-eqz v6, :cond_3
++
++    .line 68
++    const/4 v6, 0x1
++
++    invoke-static {v3, v6}, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->replaceCustThemePreviews(Lmiui/resourcebrowser/model/Resource;Z)V
++
++    .line 69
++    const/4 v6, 0x0
++
++    invoke-static {v3, v6}, Lcom/android/thememanager/controller/local/ThemeJSONDataParser;->replaceCustThemePreviews(Lmiui/resourcebrowser/model/Resource;Z)V
++
+     goto :goto_1
+ .end method
+diff -Naur a/ThemeManager/smali/miui/resourcebrowser/LoginManager$3.smali b/ThemeManager/smali/miui/resourcebrowser/LoginManager$3.smali
+--- a/ThemeManager/smali/miui/resourcebrowser/LoginManager$3.smali	2014-09-25 14:43:15.758647152 +0800
++++ b/ThemeManager/smali/miui/resourcebrowser/LoginManager$3.smali	2014-09-25 15:11:49.058570766 +0800
+@@ -37,7 +37,7 @@
+     .parameter
+ 
+     .prologue
+-    .line 222
++    .line 224
+     iput-object p1, p0, Lmiui/resourcebrowser/LoginManager$3;->this$0:Lmiui/resourcebrowser/LoginManager;
+ 
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+@@ -61,7 +61,7 @@
+     .end annotation
+ 
+     .prologue
+-    .line 225
++    .line 227
+     .local p1, future:Landroid/accounts/AccountManagerFuture;,"Landroid/accounts/AccountManagerFuture<Landroid/os/Bundle;>;"
+     invoke-interface {p1}, Landroid/accounts/AccountManagerFuture;->isDone()Z
+ 
+@@ -69,7 +69,7 @@
+ 
+     if-eqz v1, :cond_0
+ 
+-    .line 227
++    .line 229
+     :try_start_0
+     iget-object v2, p0, Lmiui/resourcebrowser/LoginManager$3;->this$0:Lmiui/resourcebrowser/LoginManager;
+ 
+@@ -97,8 +97,13 @@
+     :try_end_0
+     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+ 
+-    .line 232
++    .line 234
+     :goto_0
++    sget-boolean v1, Lmiui/resourcebrowser/util/ResourceDebug;->DEBUG:Z
++
++    if-eqz v1, :cond_0
++
++    .line 235
+     const-string v1, "Theme"
+ 
+     new-instance v2, Ljava/lang/StringBuilder;
+@@ -127,15 +132,15 @@
+ 
+     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+ 
+-    .line 234
++    .line 239
+     :cond_0
+     return-void
+ 
+-    .line 229
++    .line 231
+     :catch_0
+     move-exception v0
+ 
+-    .line 230
++    .line 232
+     .local v0, e:Ljava/lang/Exception;
+     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+ 
+diff -Naur a/ThemeManager/smali/miui/resourcebrowser/LoginManager$4.smali b/ThemeManager/smali/miui/resourcebrowser/LoginManager$4.smali
+--- a/ThemeManager/smali/miui/resourcebrowser/LoginManager$4.smali	2014-09-25 14:43:15.758647152 +0800
++++ b/ThemeManager/smali/miui/resourcebrowser/LoginManager$4.smali	2014-09-25 15:11:49.058570766 +0800
+@@ -27,7 +27,7 @@
+     .parameter
+ 
+     .prologue
+-    .line 239
++    .line 244
+     iput-object p1, p0, Lmiui/resourcebrowser/LoginManager$4;->this$0:Lmiui/resourcebrowser/LoginManager;
+ 
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+@@ -42,12 +42,12 @@
+     .parameter "accounts"
+ 
+     .prologue
+-    .line 242
++    .line 247
+     iget-object v0, p0, Lmiui/resourcebrowser/LoginManager$4;->this$0:Lmiui/resourcebrowser/LoginManager;
+ 
+     #calls: Lmiui/resourcebrowser/LoginManager;->updateAccountIfNeed()V
+     invoke-static {v0}, Lmiui/resourcebrowser/LoginManager;->access$000(Lmiui/resourcebrowser/LoginManager;)V
+ 
+-    .line 243
++    .line 248
+     return-void
+ .end method
+diff -Naur a/ThemeManager/smali/miui/resourcebrowser/LoginManager.smali b/ThemeManager/smali/miui/resourcebrowser/LoginManager.smali
+--- a/ThemeManager/smali/miui/resourcebrowser/LoginManager.smali	2014-09-25 14:43:15.762647152 +0800
++++ b/ThemeManager/smali/miui/resourcebrowser/LoginManager.smali	2014-09-25 15:11:49.058570766 +0800
+@@ -51,7 +51,7 @@
+     .line 32
+     iput-wide v3, p0, Lmiui/resourcebrowser/LoginManager;->MAX_TIME_TO_WAIT_FUTURE:J
+ 
+-    .line 239
++    .line 244
+     new-instance v1, Lmiui/resourcebrowser/LoginManager$4;
+ 
+     invoke-direct {v1, p0}, Lmiui/resourcebrowser/LoginManager$4;-><init>(Lmiui/resourcebrowser/LoginManager;)V
+@@ -122,17 +122,17 @@
+     .prologue
+     const/4 v3, 0x0
+ 
+-    .line 216
++    .line 218
+     iget-object v0, p0, Lmiui/resourcebrowser/LoginManager;->mAccount:Landroid/accounts/Account;
+ 
+     if-nez v0, :cond_1
+ 
+-    .line 237
++    .line 242
+     :cond_0
+     :goto_0
+     return-void
+ 
+-    .line 219
++    .line 221
+     :cond_1
+     if-nez p1, :cond_2
+ 
+@@ -150,7 +150,7 @@
+ 
+     if-lez v0, :cond_0
+ 
+-    .line 220
++    .line 222
+     :cond_2
+     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+ 
+@@ -158,7 +158,7 @@
+ 
+     iput-wide v0, p0, Lmiui/resourcebrowser/LoginManager;->mLastAsyncUpdateServiceTokenTime:J
+ 
+-    .line 221
++    .line 223
+     iget-object v0, p0, Lmiui/resourcebrowser/LoginManager;->mAccountManager:Landroid/accounts/AccountManager;
+ 
+     iget-object v1, p0, Lmiui/resourcebrowser/LoginManager;->mAccount:Landroid/accounts/Account;
+@@ -643,14 +643,15 @@
+     .line 198
+     iget-object v0, p0, Lmiui/resourcebrowser/LoginManager;->mAccount:Landroid/accounts/Account;
+ 
+-    if-nez v0, :cond_0
++    if-nez v0, :cond_1
+ 
+-    .line 213
++    .line 215
++    :cond_0
+     :goto_0
+     return-void
+ 
+     .line 201
+-    :cond_0
++    :cond_1
+     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+ 
+     move-result-wide v7
+@@ -702,6 +703,11 @@
+ 
+     .line 211
+     :goto_1
++    sget-boolean v0, Lmiui/resourcebrowser/util/ResourceDebug;->DEBUG:Z
++
++    if-eqz v0, :cond_0
++
++    .line 212
+     const-string v0, "Theme"
+ 
+     new-instance v1, Ljava/lang/StringBuilder;
+diff -Naur a/ThemeManager/smali/miui/resourcebrowser/util/ResourceHelper.smali b/ThemeManager/smali/miui/resourcebrowser/util/ResourceHelper.smali
+--- a/ThemeManager/smali/miui/resourcebrowser/util/ResourceHelper.smali	2014-09-25 14:43:15.970647143 +0800
++++ b/ThemeManager/smali/miui/resourcebrowser/util/ResourceHelper.smali	2014-09-25 15:11:49.054570766 +0800
+@@ -3954,6 +3954,33 @@
+     goto :goto_0
+ .end method
+ 
++.method public static isDataResource(Ljava/lang/String;)Z
++    .locals 1
++    .parameter "path"
++
++    .prologue
++    .line 633
++    if-eqz p0, :cond_0
++
++    const-string v0, "/data"
++
++    invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_0
++
++    const/4 v0, 0x1
++
++    :goto_0
++    return v0
++
++    :cond_0
++    const/4 v0, 0x0
++
++    goto :goto_0
++.end method
++
+ .method public static isMultipleView(I)Z
+     .locals 1
+     .parameter "displayType"

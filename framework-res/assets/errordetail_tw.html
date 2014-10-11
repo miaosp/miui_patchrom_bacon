@@ -1,0 +1,162 @@
+<!DOCTYPE html >
+<html>
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' />
+                <title>錯誤詳細資訊</title>
+                <link rel="icon" href="file:///android_asset/webkit/favicon.png">
+                <style>
+*{background-repeat:no-repeat;}
+body, div, dl, dt, dd, ul, ol, li,h1, h2, h3, h4, h5, h6, pre, code,form, fieldset, legend, input, button,textarea, p, blockquote, th, td { margin: 0;padding: 0;color:#000000;}
+fieldset, img {border: 0;}
+:focus {outline: 0;}
+address, caption, cite, code, dfn,em, strong, th, var, optgroup {font-style: normal;font-weight: normal;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
+abbr, acronym { border: 0;font-variant: normal;}
+#main{ width: 100%; }
+h2{ font-size: 15px; color: #5a6066; border-bottom: 1px solid #c4c4c4; line-height: 30px; margin-bottom: 4px; font-weight: bold; }
+p{ color: #989898; font-size: 13px; line-height: 20px; }
+.red_span{ color: #ff7200; }
+.item{ padding: 10px; }
+                </style>
+         </head>
+                <body>
+                        <div id="main">
+                        </div>
+                <script type="text/javascript">
+                var request = {
+
+                    QueryString : function(val) {
+
+                                var uri = window.location.search;
+
+                                var re = new RegExp("" +val+ "=([^&?]*)", "ig");
+
+                                return ((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null);
+                    }
+
+                }
+                var json = new Array();
+                var jsonTemp = new Array();
+                jsonTemp[0] = request.QueryString("var");
+                jsonTemp[1] = request.QueryString("var1");
+                jsonTemp[2] = request.QueryString("var2");
+                jsonTemp[3] = request.QueryString("var3");
+                jsonTemp[4] = request.QueryString("var4");
+                jsonTemp[5] = request.QueryString("var5");
+                switch(parseInt(jsonTemp[0])) {
+                    case -2:
+                    case -3:
+                    case -4:
+                    case -5:
+                    case -6:
+                    case -7:
+                    case -9:
+                    case -11:
+                        jsonTemp[1] = "請您檢查網路設定";
+                        break;
+                    case -10:
+                    case -12:
+                    case -13:
+                    case -14:
+                        jsonTemp[1] = "請您檢查輸入的網址";
+                        break;
+                    default:
+                        jsonTemp[1] = "連線超時，請嘗試重新整理";
+                        break;
+                }
+                switch(parseInt(jsonTemp[0])) {
+                    case -1:
+                        jsonTemp[0] = "-1(未知錯誤)";
+                        break;
+                    case -2:
+                        jsonTemp[0] = "-2(找不到服務器)";
+                        break;
+                    case -3:
+                        jsonTemp[0] = "-3(未知認證方式)";
+                        break;
+                    case -4:
+                        jsonTemp[0] = "-4(服務器身份認證失敗)";
+                        break;
+                    case -5:
+                        jsonTemp[0] = "-5(代理服務器身份認證失敗)";
+                        break;
+                    case -6:
+                        jsonTemp[0] = "-6(連接問題)";
+                        break;
+                    case -7:
+                        jsonTemp[0] = "-7(讀寫服務器失敗)";
+                        break;
+                    case -8:
+                        jsonTemp[0] = "-8(連線超時)";
+                        break;
+                    case -9:
+                        jsonTemp[0] = "-9(重定向過多)";
+                        break;
+                    case -10:
+                        jsonTemp[0] = "-10(未知格式的URI)";
+                        break;
+                    case -11:
+                        jsonTemp[0] = "-11(SSL握手失敗)";
+                        break;
+                    case -12:
+                        jsonTemp[0] = "-12(網址錯誤)";
+                        break;
+                    case -13:
+                        jsonTemp[0] = "-13(档案错误)";
+                        break;
+                    case -14:
+                        jsonTemp[0] = "-14(找不到檔案)";
+                        break;
+                    case -15:
+                        jsonTemp[0] = "-15(訪問請求過多)";
+                        break;
+                    default:
+                        break;
+                }
+                if( !jsonTemp[0] ) { json[0] = "未設定";} else { json[0] = jsonTemp[0];}
+                if( !jsonTemp[1] ) { json[1] = "未設定";} else { json[1] = jsonTemp[1];}
+                if( !jsonTemp[2] ) { json[2] = "未設定";} else { json[2] = jsonTemp[2];}
+                if( jsonTemp[2] != "" ) { json[3] = "1";} else { json[3] = "0";}
+                switch( parseInt(jsonTemp[3])) {
+                    case 0:
+                        json[4] = "未設定";
+                        break;
+                    case 1:
+                        json[4] = "已開啟";
+                        json[1] = "請您檢查輸入的網址";
+                        break;
+                    default:
+                        json[4] = "未開啟";
+                        break;
+                }
+                json[5] = "未設定";
+                if( !jsonTemp[4] ) { json[6] = "未設定";} else { json[6] = jsonTemp[4];}
+                if( !jsonTemp[5] ) { json[7] = "未設定";} else { json[7] = jsonTemp[5];}
+                var main = document.getElementById("main");
+                var str = new Array();
+                var str1 = '<div class="item">', str2 = '</div>';
+                str[0] = str1;
+                str[1] = '<h2>錯誤類型</h2>';
+                str[2] = '<p>' + json[0] + '</p>';
+                str[3] = str2;
+                str[4] = str1;
+                str[5] = '<h2>建議操作</h2>';
+                str[6] = '<p><span class="red_span">' + json[1] + '</span></p>';
+                str[7] = str2;
+                str[8] = str1;
+                str[9] = '<h2>DNS解析資訊</h2>';
+                str[10] = '<p>解析到IP地址：' + json[2] + '</p>';
+                str[11] = '<p>解析到IP地址數量：' + json[3] + '</p>';
+                str[12] = str2;
+                str[13] = str1;
+                str[14] = '<h2>網路資訊</h2>';
+                str[15] = '<p>Wifi狀態：<span class="red_span">' + json[4] + '</span></p>';
+                str[16] = '<p>預設閘道：' + json[5] + '</p>';
+                str[17] = '<p>接入點名稱：' + json[6] + '</p>';
+                str[18] = '<p>使用閘道：' + json[7] + '</p>';
+                str[19] = str2;
+                main.innerHTML = str.join("");
+                </script>
+       </body>
+</html>
