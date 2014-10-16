@@ -473,6 +473,29 @@
     .end local v0           #_arg0:Ljava/lang/String;
     .end local v1           #_arg1:I
     :sswitch_b
+    const-string v7, "com.android.internal.widget.ILockSettings"
+
+    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p2}, Landroid/os/Parcel;->createByteArray()[B
+
+    move-result-object v0
+
+    .local v0, _arg0:[B
+    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v1
+
+    .restart local v1       #_arg1:I
+    invoke-virtual {p0, v0, v1}, Lcom/android/internal/widget/ILockSettings$Stub;->setRawLockPassword([BI)V
+
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    goto/16 :goto_0
+
+    .end local v0           #_arg0:[B
+    .end local v1           #_arg1:I
+    :sswitch_c
     const-string v8, "com.android.internal.widget.ILockSettings"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -481,7 +504,7 @@
 
     move-result-object v0
 
-    .restart local v0       #_arg0:Ljava/lang/String;
+    .local v0, _arg0:Ljava/lang/String;
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
@@ -506,7 +529,7 @@
     .end local v0           #_arg0:Ljava/lang/String;
     .end local v1           #_arg1:I
     .end local v4           #_result:Z
-    :sswitch_c
+    :sswitch_d
     const-string v8, "com.android.internal.widget.ILockSettings"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -534,7 +557,7 @@
 
     .end local v0           #_arg0:I
     .end local v4           #_result:Z
-    :sswitch_d
+    :sswitch_e
     const-string v8, "com.android.internal.widget.ILockSettings"
 
     invoke-virtual {p2, v8}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -562,7 +585,7 @@
 
     .end local v0           #_arg0:I
     .end local v4           #_result:Z
-    :sswitch_e
+    :sswitch_f
     const-string v7, "com.android.internal.widget.ILockSettings"
 
     invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
@@ -573,31 +596,6 @@
 
     .restart local v0       #_arg0:I
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/ILockSettings$Stub;->removeUser(I)V
-
-    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
-
-    goto/16 :goto_0
-
-    nop
-
-    .end local v0           #_arg0:Ljava/lang/String;
-    .end local v1           #_arg1:I
-    :sswitch_2a
-    const-string v7, "com.android.internal.widget.ILockSettings"
-
-    invoke-virtual {p2, v7}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
-
-    invoke-virtual {p2}, Landroid/os/Parcel;->createByteArray()[B
-
-    move-result-object v0
-
-    .local v0, _arg0:[B
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v1
-
-    .restart local v1       #_arg1:I
-    invoke-virtual {p0, v0, v1}, Lcom/android/internal/widget/ILockSettings$Stub;->setRawLockPassword([BI)V
 
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
@@ -619,7 +617,7 @@
         0xc -> :sswitch_c
         0xd -> :sswitch_d
         0xe -> :sswitch_e
-        0x2a -> :sswitch_2a
+        0xf -> :sswitch_f
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

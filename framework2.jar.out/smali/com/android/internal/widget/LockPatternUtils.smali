@@ -1326,7 +1326,7 @@
 
     move-result-object v2
 
-    invoke-virtual {p0, p1}, Lcom/android/internal/widget/LockPatternUtils;->patternToString(Ljava/util/List;)Ljava/lang/String;
+    invoke-static {p1}, Lcom/android/internal/widget/LockPatternUtils;->patternToString(Ljava/util/List;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -2533,6 +2533,10 @@
     cmp-long v0, v0, v2
 
     if-eqz v0, :cond_0
+
+    sget-boolean v0, Lmiui/os/Build;->IS_ALPHA_BUILD:Z
+
+    if-nez v0, :cond_0
 
     const/4 v0, 0x1
 
@@ -4395,10 +4399,7 @@
     .local v3, result:Ljava/util/List;,"Ljava/util/List<Lcom/android/internal/widget/LockPatternView$Cell;>;"
     const/4 v4, 0x3
 
-
     .local v4, size:B
-    invoke-static {v4}, Lcom/android/internal/widget/LockPatternView$Cell;->updateSize(B)V
-
     invoke-virtual {p0}, Ljava/lang/String;->getBytes()[B
 
     move-result-object v1
